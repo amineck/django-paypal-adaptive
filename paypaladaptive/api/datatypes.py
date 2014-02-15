@@ -6,7 +6,7 @@ class Receiver():
     amount = None
     primary = False
 
-    def __init__(self, email=None, amount=None, primary=False):
+    def __init__(self, email=None, amount=None, primary=None):
         self.email = email
         self.amount = amount
         self.primary = primary
@@ -14,8 +14,8 @@ class Receiver():
     def to_dict(self):
         obj = {'email': self.email,
                 'amount': self.amount}
-        if self.primary:
-            obj["primary"] = primary
+        if self.primary != None:
+            obj["primary"] = self.primary
         return obj
 
     def __unicode__(self):
