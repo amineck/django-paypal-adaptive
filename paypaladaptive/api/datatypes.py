@@ -12,9 +12,11 @@ class Receiver():
         self.primary = primary
 
     def to_dict(self):
-        return {'email': self.email,
-                'amount': self.amount,
-                'primary': self.primary}
+        obj = {'email': self.email,
+                'amount': self.amount}
+        if self.primary:
+            obj["primary"] = primary
+        return obj
 
     def __unicode__(self):
         return self.email
