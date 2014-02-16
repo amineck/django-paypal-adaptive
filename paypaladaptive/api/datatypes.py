@@ -4,18 +4,14 @@ from errors import ReceiverError
 class Receiver():
     email = None
     amount = None
-    primary = False
 
-    def __init__(self, email=None, amount=None, primary=None):
+    def __init__(self, email=None, amount=None):
         self.email = email
         self.amount = amount
-        self.primary = primary
 
     def to_dict(self):
         obj = {'email': self.email,
                 'amount': self.amount}
-        if self.primary != None:
-            obj["primary"] = self.primary
         return obj
 
     def __unicode__(self):
@@ -37,19 +33,10 @@ class ReceiverList():
         self.receivers.append(receiver)
 
     def to_dict(self):
-        self.has_primary()
         return [r.to_dict() for r in self.receivers]
 
     def __len__(self):
         return len(self.receivers)
-
-    def has_primary(self):
-        n_primary = len(filter(lambda r: r.primary is True, self.receivers))
-
-        if n_primary > 1:
-            raise ReceiverError("There can only be one primary Receiver")
-
-        return n_primary == 1
 
     @property
     def total_amount(self):
