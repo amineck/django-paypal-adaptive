@@ -39,7 +39,6 @@ def render(request, template, template_vars=None):
 
 
 @login_required
-@transaction.autocommit
 def payment_cancel(request, payment_id, secret_uuid,
                    template="paypaladaptive/cancel.html"):
     """Handle incoming cancellation from paypal"""
@@ -56,7 +55,6 @@ def payment_cancel(request, payment_id, secret_uuid,
     return render(request, template, template_vars)
 
 
-@transaction.autocommit
 def payment_return(request, payment_id, secret_uuid,
                    template="paypaladaptive/return.html"):
     """
@@ -97,7 +95,6 @@ def payment_return(request, payment_id, secret_uuid,
     return render(request, template, template_vars)
 
 
-@transaction.autocommit
 def preapproval_cancel(request, preapproval_id,
                        template="paypaladaptive/cancel.html"):
     """Incoming preapproval cancellation from paypal"""
@@ -110,7 +107,6 @@ def preapproval_cancel(request, preapproval_id,
     return render(request, template, template_vars)
 
 
-@transaction.autocommit
 def preapproval_return(request, preapproval_id, secret_uuid,
                        template="paypaladaptive/return.html"):
     """
@@ -153,7 +149,6 @@ def preapproval_return(request, preapproval_id, secret_uuid,
 
 @csrf_exempt
 @require_POST
-@transaction.autocommit
 @takes_ipn
 def ipn(request, object_id, object_secret_uuid, ipn):
     """
