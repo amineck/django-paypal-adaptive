@@ -3,7 +3,7 @@
 from datetime import datetime, timedelta
 import logging
 
-from django.utils import simplejson as json
+import json
 
 from money.Money import Money
 
