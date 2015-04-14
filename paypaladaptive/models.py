@@ -11,7 +11,7 @@ import json
 from money.contrib.django.models.fields import MoneyField
 
 import settings
-import api
+import apiautocommit
 
 
 try:
@@ -168,7 +168,6 @@ class Payment(PaypalAdaptive):
         cancel_url = reverse('paypal-adaptive-payment-cancel', kwargs=kwargs)
         return "http://%s%s" % (current_site, cancel_url)
 
-    @transaction.autocommit
     def process(self, receivers, preapproval=None, **kwargs):
         """Process the payment"""
 
@@ -244,7 +243,6 @@ class Payment(PaypalAdaptive):
         
         return self.status in ['created', 'completed']
 
-    @transaction.autocommit
     def refund(self):
         """Refund this payment"""
 
@@ -362,7 +360,6 @@ class Preapproval(PaypalAdaptive):
                              kwargs=kwargs)
         return "http://%s%s" % (current_site, cancel_url)
 
-    @transaction.autocommit
     def process(self, **kwargs):
         """Process the preapproval"""
 
@@ -399,7 +396,6 @@ class Preapproval(PaypalAdaptive):
         
         return self.status == 'created'
         
-    @transaction.autocommit
     def cancel_preapproval(self):
         res, cancel = self.call(api.CancelPreapproval,
                                 preapproval_key=self.preapproval_key)
@@ -410,7 +406,6 @@ class Preapproval(PaypalAdaptive):
         self.save()
         return self.status == 'canceled'
         
-    @transaction.autocommit
     def mark_as_used(self):
         self.status = 'used'
         self.save()
