@@ -11,7 +11,7 @@ import json
 from money.contrib.django.models.fields import MoneyField
 
 import settings
-import apiautocommit
+import api
 
 
 try:
