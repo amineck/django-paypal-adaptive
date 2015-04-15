@@ -14,7 +14,6 @@ setup(
     install_requires=[
         'Django>=1.4.3',
         'python-dateutil==2.1',
-        '-e git+https://github.com/kamotos/python-money.git#egg=money',
     ],
     extras_require={
         'delayed-updates': ['celery>=3.0.12'],
