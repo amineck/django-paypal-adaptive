@@ -19,7 +19,7 @@ setup(
         'delayed-updates': ['celery>=3.0.12'],
     },
     dependency_links=[
-        '-e git+https://github.com/kamotos/python-money.git#egg=money'
+#        '-e git+https://github.com/kamotos/python-money.git#egg=money'
     ],
     description='A pluggable Django application for integrating PayPal '
                 'Adaptive Payments',
