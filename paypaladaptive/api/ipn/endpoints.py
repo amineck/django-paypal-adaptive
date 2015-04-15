@@ -1,7 +1,6 @@
 import logging
 import  urllib
 
-from django.utils import simplejson
 
 from dateutil.parser import parse
 from money.Money import Money, Currency
